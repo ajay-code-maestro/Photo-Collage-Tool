@@ -1,10 +1,8 @@
-"use client";
-
 import { EditorSidebar } from "@/components/editor/EditorSidebar";
 import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { useEditorStore } from "@/store/useEditorStore";
 import { Sparkles, Layout, Undo2, Redo2, Download } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as htmlToImage from 'html-to-image';
 import { AuthModal } from "@/components/AuthModal";
@@ -116,7 +114,7 @@ export default function EditorPage() {
       {/* Editor Header */}
       <header className="h-14 border-b border-white/10 flex items-center justify-between px-4 shrink-0 glass z-40">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
               <Layout className="w-4 h-4 text-white" />
             </div>
@@ -201,7 +199,7 @@ export default function EditorPage() {
         {/* Workspace (Canvas area) */}
         <div className="flex-1 relative bg-[#050505] overflow-auto flex items-center justify-center pl-[380px] p-8">
           {/* Ambient Cinematic Texture */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
+          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_60%)] pointer-events-none" />
           
           <EditorWorkspace />
