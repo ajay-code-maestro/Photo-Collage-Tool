@@ -1,7 +1,7 @@
 import { EditorSidebar } from "@/components/editor/EditorSidebar";
 import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { useEditorStore } from "@/store/useEditorStore";
-import { Sparkles, Layout, Undo2, Redo2, Download } from "lucide-react";
+import { Layout, Undo2, Redo2, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as htmlToImage from 'html-to-image';
@@ -14,7 +14,7 @@ export default function EditorPage() {
   const [exportModalOpen, setExportModalOpen] = useState(false);
   const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'login' | 'register' }>({ isOpen: false, mode: 'login' });
   
-  const { isProcessingAI, setProcessingAI, images, setLayout } = useEditorStore();
+  const { images } = useEditorStore();
   const { undo, redo, pastStates, futureStates } = useEditorStore.temporal.getState();
 
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
@@ -71,29 +71,6 @@ export default function EditorPage() {
       console.error('Failed to export', err);
     } finally {
       setIsExporting(false);
-    }
-  };
-
-  const handleAILayout = async () => {
-    if (images.length === 0) return;
-    setProcessingAI(true);
-    try {
-      // Simulate backend API call delay for cinematic effect
-      await new Promise(r => setTimeout(r, 1500));
-      
-      let portraitCount = 0;
-      let landscapeCount = 0;
-      images.forEach(img => {
-        portraitCount++; 
-      });
-
-      let recommendedLayout: any = 'grid';
-      if (images.length === 2) recommendedLayout = 'split-v';
-      else if (images.length >= 3) recommendedLayout = 'masonry';
-      
-      setLayout(recommendedLayout);
-    } finally {
-      setProcessingAI(false);
     }
   };
 
@@ -172,14 +149,6 @@ export default function EditorPage() {
           </div>
 
           <button 
-            onClick={handleAILayout}
-            disabled={isProcessingAI || images.length === 0}
-            className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-2 disabled:opacity-50"
-          >
-            {isProcessingAI ? <Sparkles className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-purple-400" />}
-            AI Auto-Layout
-          </button>
-          <button 
             onClick={() => setExportModalOpen(true)}
             disabled={images.length === 0}
             className="px-4 py-1.5 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50"
@@ -204,15 +173,6 @@ export default function EditorPage() {
           
           <EditorWorkspace />
 
-          {/* AI Processing Overlay */}
-          {isProcessingAI && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md transition-all duration-500">
-               <div className="text-primary animate-pulse flex flex-col items-center gap-4">
-                 <Sparkles className="w-12 h-12" />
-                 <span className="font-semibold tracking-wider uppercase text-sm">Analyzing Composition...</span>
-               </div>
-            </div>
-          )}
         </div>
       </main>
     </div>
