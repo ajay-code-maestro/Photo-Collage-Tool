@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint",
     "postinstall": "mkdir -p public/models && cp -R node_modules/@vladmandic/face-api/model/ public/models/"
   },
@@ -18,10 +18,10 @@
     "framer-motion": "^12.40.0",
     "html-to-image": "^1.11.13",
     "lucide-react": "^1.17.0",
+    "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-dropzone": "^15.0.0",
-    "react-router-dom": "^6.22.3",
     "tailwind-merge": "^3.6.0",
     "zundo": "^2.3.0",
     "zustand": "^5.0.14"
@@ -31,10 +31,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9",
+    "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "vite": "^5.4.11"
+    "typescript": "^5"
   }
 }

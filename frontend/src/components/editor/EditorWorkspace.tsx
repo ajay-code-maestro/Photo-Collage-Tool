@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useEditorStore } from "@/store/useEditorStore";
-import { UploadCloud, Grid2X2, AlignHorizontalSpaceAround, Rows, Columns, Grid3X3 } from "lucide-react";
+import { UploadCloud } from "lucide-react";
 import { CollageGrid } from "./CollageGrid";
 import { motion, AnimatePresence } from "framer-motion";
 import { loadFaceDetectionModels, detectFocalPoint } from "@/lib/faceDetection";
@@ -84,11 +84,11 @@ export function EditorWorkspace() {
             >
               <div className="flex items-center gap-1 p-2 bg-[#18181b]/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
                 {[
-                  { id: 'grid', icon: Grid2X2, label: 'Grid' },
-                  { id: 'masonry', icon: AlignHorizontalSpaceAround, label: 'Masonry' },
-                  { id: 'split-h', icon: Rows, label: 'Split H' },
-                  { id: 'split-v', icon: Columns, label: 'Split V' },
-                  { id: 'asymmetric', icon: Grid3X3, label: 'Dynamic' },
+                  { id: 'grid', icon: require('lucide-react').Grid2X2, label: 'Grid' },
+                  { id: 'masonry', icon: require('lucide-react').AlignHorizontalSpaceAround, label: 'Masonry' },
+                  { id: 'split-h', icon: require('lucide-react').Rows, label: 'Split H' },
+                  { id: 'split-v', icon: require('lucide-react').Columns, label: 'Split V' },
+                  { id: 'asymmetric', icon: require('lucide-react').Grid3X3, label: 'Dynamic' },
                 ].map(l => {
                   const Icon = l.icon;
                   const isActive = layout === l.id;

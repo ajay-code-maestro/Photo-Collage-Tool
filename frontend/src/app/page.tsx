@@ -1,6 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowRight, Image as ImageIcon, Layout, Sparkles, Wand2, Upload, MonitorSmartphone, Share2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useState } from "react";
 import { AuthModal } from "@/components/AuthModal";
 
@@ -63,7 +65,7 @@ export default function LandingPage() {
             Sign up
           </button>
         </nav>
-        <Link to="/editor" className="ml-4 px-5 py-2 rounded-full bg-foreground text-background font-medium text-sm hover:scale-105 transition-transform">
+        <Link href="/editor" className="ml-4 px-5 py-2 rounded-full bg-foreground text-background font-medium text-sm hover:scale-105 transition-transform">
           Open Editor
         </Link>
       </header>
@@ -110,7 +112,7 @@ export default function LandingPage() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex items-center gap-4"
         >
-          <Link to="/editor" className="px-8 py-4 rounded-full bg-primary hover:bg-primary/90 text-white font-medium text-lg flex items-center gap-2 transition-all hover:gap-3 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+          <Link href="/editor" className="px-8 py-4 rounded-full bg-primary hover:bg-primary/90 text-white font-medium text-lg flex items-center gap-2 transition-all hover:gap-3 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
             Start Creating <ArrowRight className="w-5 h-5" />
           </Link>
         </motion.div>
@@ -200,7 +202,7 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to create?</h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">Join thousands of creators building stunning collages in seconds. No signup required to start.</p>
-          <Link to="/editor" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-foreground text-background font-semibold text-lg hover:scale-105 transition-transform">
+          <Link href="/editor" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-foreground text-background font-semibold text-lg hover:scale-105 transition-transform">
             Launch Editor <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
