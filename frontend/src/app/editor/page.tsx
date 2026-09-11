@@ -1,8 +1,15 @@
+"use client";
+
 import { EditorSidebar } from "@/components/editor/EditorSidebar";
 import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { useEditorStore } from "@/store/useEditorStore";
+<<<<<<< HEAD
 import { Undo2, Redo2, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+=======
+import { Sparkles, Layout, Undo2, Redo2, Download } from "lucide-react";
+import Link from "next/link";
+>>>>>>> origin/main
 import { useState, useEffect } from "react";
 import * as htmlToImage from "html-to-image";
 import { AuthModal } from "@/components/AuthModal";
@@ -11,6 +18,13 @@ import { ExportModal, ExportOptions } from "@/components/editor/ExportModal";
 export default function EditorPage() {
   const [isExporting, setIsExporting] = useState(false);
   const [exportModalOpen, setExportModalOpen] = useState(false);
+<<<<<<< HEAD
+=======
+  const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'login' | 'register' }>({ isOpen: false, mode: 'login' });
+  
+  const { isProcessingAI, setProcessingAI, images, setLayout } = useEditorStore();
+  const { undo, redo, pastStates, futureStates } = useEditorStore.temporal.getState();
+>>>>>>> origin/main
 
   const [authModal, setAuthModal] = useState<{
     isOpen: boolean;
@@ -93,6 +107,29 @@ export default function EditorPage() {
     }
   };
 
+  const handleAILayout = async () => {
+    if (images.length === 0) return;
+    setProcessingAI(true);
+    try {
+      // Simulate backend API call delay for cinematic effect
+      await new Promise(r => setTimeout(r, 1500));
+      
+      let portraitCount = 0;
+      let landscapeCount = 0;
+      images.forEach(img => {
+        portraitCount++; 
+      });
+
+      let recommendedLayout: any = 'grid';
+      if (images.length === 2) recommendedLayout = 'split-v';
+      else if (images.length >= 3) recommendedLayout = 'masonry';
+      
+      setLayout(recommendedLayout);
+    } finally {
+      setProcessingAI(false);
+    }
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background">
       <AuthModal
@@ -116,6 +153,7 @@ export default function EditorPage() {
       {/* Editor Header */}
       <header className="h-14 border-b border-white/10 flex items-center justify-between px-4 shrink-0 glass z-40">
         <div className="flex items-center gap-6">
+<<<<<<< HEAD
           <Link
             to="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -129,6 +167,13 @@ export default function EditorPage() {
             <span className="font-bold tracking-tight">
               Photo Collage Tool
             </span>
+=======
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+              <Layout className="w-4 h-4 text-white" />
+            </div>
+            <span className="font-bold tracking-tight">Photo Collage Tool</span>
+>>>>>>> origin/main
           </Link>
 
           {/* Undo / Redo */}
@@ -196,7 +241,19 @@ export default function EditorPage() {
             )}
           </div>
 
+<<<<<<< HEAD
           <button
+=======
+          <button 
+            onClick={handleAILayout}
+            disabled={isProcessingAI || images.length === 0}
+            className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-2 disabled:opacity-50"
+          >
+            {isProcessingAI ? <Sparkles className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-purple-400" />}
+            AI Auto-Layout
+          </button>
+          <button 
+>>>>>>> origin/main
             onClick={() => setExportModalOpen(true)}
             disabled={images.length === 0}
             className="px-4 py-1.5 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50"
@@ -217,11 +274,28 @@ export default function EditorPage() {
         {/* Workspace */}
         <div className="flex-1 relative bg-[#050505] overflow-auto flex items-center justify-center pl-[380px] p-8">
           {/* Ambient Cinematic Texture */}
+<<<<<<< HEAD
           <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
 
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_60%)] pointer-events-none" />
 
           <EditorWorkspace />
+=======
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_60%)] pointer-events-none" />
+          
+          <EditorWorkspace />
+
+          {/* AI Processing Overlay */}
+          {isProcessingAI && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md transition-all duration-500">
+               <div className="text-primary animate-pulse flex flex-col items-center gap-4">
+                 <Sparkles className="w-12 h-12" />
+                 <span className="font-semibold tracking-wider uppercase text-sm">Analyzing Composition...</span>
+               </div>
+            </div>
+          )}
+>>>>>>> origin/main
         </div>
       </main>
     </div>
