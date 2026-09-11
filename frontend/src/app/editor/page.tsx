@@ -1,7 +1,7 @@
 import { EditorSidebar } from "@/components/editor/EditorSidebar";
 import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { useEditorStore } from "@/store/useEditorStore";
-import { Layout, Undo2, Redo2, Download } from "lucide-react";
+import { Undo2, Redo2, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as htmlToImage from 'html-to-image';
@@ -92,9 +92,11 @@ export default function EditorPage() {
       <header className="h-14 border-b border-white/10 flex items-center justify-between px-4 shrink-0 glass z-40">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
-              <Layout className="w-4 h-4 text-white" />
-            </div>
+            <img
+              src="/assets/photo-collage-logo.png"
+              alt="Photo Collage Tool"
+              className="w-8 h-8 rounded-lg object-contain"
+            />
             <span className="font-bold tracking-tight">Photo Collage Tool</span>
           </Link>
           
