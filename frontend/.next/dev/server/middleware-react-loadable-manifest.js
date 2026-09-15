@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"lib/faceDetection.ts -> @vladmandic/face-api\":{\"id\":\"lib/faceDetection.ts -> @vladmandic/face-api\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_vladmandic_face-api_dist_face-api_esm_js.js\"]}}"
