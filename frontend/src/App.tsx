@@ -5,7 +5,7 @@ import '@/app/globals.css';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Photo-Collage-Tool">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/editor" element={<EditorPage />} />
